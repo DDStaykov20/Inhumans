@@ -1,0 +1,36 @@
+@model CustomIdentity.Models.AssignmentModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>AssignmentModel</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Class)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Class)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AssignmentDescription)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AssignmentDescription)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Payment)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Payment)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

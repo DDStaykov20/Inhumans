@@ -1,0 +1,94 @@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model CustomIdentity.ViewModels.RegisterVM
+
+@{
+ViewData["Title"] = "Register";
+}
+
+<style>
+    body {
+        background-color: #003a8c;
+        color: #fff;
+        font-family: Arial, sans-serif;
+    }
+    .register-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .register-card {
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 2rem;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        color: #000;
+    }
+    .register-card h2 {
+        color: #003a8c;
+    }
+    .register-card .form-control {
+        border-radius: 5px;
+    }
+    .register-card .btn-primary {
+        background-color: #003a8c;
+        border: none;
+        border-radius: 5px;
+    }
+    .register-card .btn-primary:hover {
+        background-color: #005bb5;
+    }
+</style>
+
+<div class="register-container">
+    <div class="register-card col-md-4">
+        <h2 class="text-center">Register</h2>
+        <form asp-action="Register" method="post" asp-route-returnurl="@ViewData["ReturnUrl"]">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="mb-3">
+                <label asp-for="Name" class="form-label">Name</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label">Email</label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label">Password</label>
+                <input asp-for="Password" type="password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="ConfirmPassword" class="form-label">Confirm Password</label>
+                <input asp-for="ConfirmPassword" type="password" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Address" class="form-label">Address</label>
+                <textarea asp-for="Address" class="form-control" rows="2"></textarea>
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="RoleName" class="form-label">Role Name</label>
+                <textarea asp-for="RoleName" class="form-control" rows="2"></textarea>
+                <span asp-validation-for="RoleName" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <div class="col-8">
+                    <a asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" class="text-decoration-none float-start mt-2">Have account?</a>
+                </div>
+                <div class="col-4">
+                    <input type="submit" value="Register" class="btn btn-primary w-100" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+@{
+await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}

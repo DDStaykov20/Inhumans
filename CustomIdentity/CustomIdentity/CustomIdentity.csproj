@@ -1,0 +1,120 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.6" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.6" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.6" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.6" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.6">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Areas\PetController\Controllers\" />
+      <Folder Include="Areas\PetController\Data\" />
+      <Folder Include="Areas\PetController\Models\" />
+      <Folder Include="Areas\PetController\Views\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Views\Pet\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Pet\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Pet\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Pet\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Pet\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Message\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Message\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Message\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Message\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Message\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Role\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Role\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Role\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Role\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Role\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Homework\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Homework\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Homework\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Homework\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Homework\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Submission\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Submission\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Submission\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Submission\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Submission\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Group\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Group\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Group\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Group\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Group\Index.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <UpToDateCheckInput Remove="Views\Pet\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\Pet\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\Pet\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\Pet\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\Pet\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\Pet\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\Pet\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\Pet\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\Pet\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\Pet\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\Pet\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\Pet\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\Pet\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\Pet\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\Pet\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\Pet\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\Pet\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\Pet\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\Pet\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\Pet\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\Pet\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\Pet\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\Pet\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\Pet\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\Pet\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\Pet\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\Pet\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\Pet\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\Pet\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\Pet\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\Role\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\Role\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\Role\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\Role\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\Role\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\Role\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\Role\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\Role\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\Role\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\Role\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\Role\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\Role\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\Role\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\Role\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\Role\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\Role\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\Role\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\Role\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\Role\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\Role\Index.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Views\Home\Index.cs">
+        <DependentUpon>Index.cshtml</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+</Project>

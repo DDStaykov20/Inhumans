@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="CustomIdentityDb@DESKTOP-R5TJ5KH" uuid="8ff146db-4a6d-4578-80dc-dbaa8815051e">
+      <driver-ref>sqlserver.jb</driver-ref>
+      <synchronize>true</synchronize>
+      <configured-by-url>true</configured-by-url>
+      <jdbc-driver>com.jetbrains.jdbc.sqlserver.SqlServerDriver</jdbc-driver>
+      <jdbc-url>Server=DESKTOP-R5TJ5KH;Database=CustomIdentityDb;Integrated Security=True;TrustServerCertificate=True;Trusted_Connection=True</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+  </component>
+</project>

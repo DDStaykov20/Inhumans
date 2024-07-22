@@ -1,0 +1,96 @@
+@model CustomIdentity.ViewModels.LoginVM
+
+@{
+ViewData["Title"] = "Login";
+}
+
+<style>
+    body {
+        background-color: #003a8c;
+        color: #0dcaf0;
+        font-family: Arial, sans-serif;
+    }
+    .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+    }
+    .login-card {
+        font-size: 20px;
+        width: 600px;
+        height: 600px;
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 2rem;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        color: #000;
+    }
+    .login-card h2 {
+        color: #003a8c;
+    }
+    .login-card .form-control {
+        border-radius: 5px;
+    }
+    .login-card .btn-primary {
+        background-color: #003a8c;
+        border: none;
+        border-radius: 5px;
+        font-size: 25px;
+    }
+    .login-card .btn-primary:hover {
+        background-color: #005bb5;
+    }
+    .google-signin {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 0.5rem 1rem;
+        display: flex;
+        align-items: center;
+        color: #000;
+        text-decoration: none;
+        margin-top: 1rem;
+    }
+    .google-signin img {
+        margin-right: 0.5rem;
+    }
+    .google-signin:hover {
+        background-color: #f1f1f1;
+    }
+</style>
+
+<div class="login-container">
+    <div class="login-card col-md-3">
+        <h2 class="text-center">Login</h2>
+        <form asp-action="Login" method="post" asp-route-returnurl="@ViewData["ReturnUrl"]">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="mb-3">
+                <label asp-for="Username" class="form-label">Username or Email</label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label">Password</label>
+                <input asp-for="Password" type="password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <a href="#" class="text-decoration-none">Forgot password?</a>
+            </div>
+            <div class="mb-3">
+                <input type="submit" value="Login" class="btn btn-primary w-100" />
+            </div>
+           
+            <div class="text-center mt-3">
+                <a asp-action="Register" class="text-decoration-none">Not a member yet? Register!</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+@{
+await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}
