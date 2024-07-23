@@ -109,6 +109,11 @@
       <UpToDateCheckInput Remove="Views\Role\Details.cshtml" />
       <UpToDateCheckInput Remove="Views\Role\Edit.cshtml" />
       <UpToDateCheckInput Remove="Views\Role\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\Group\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\Group\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\Group\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\Group\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\Group\Index.cshtml" />
     </ItemGroup>
 
     <ItemGroup>

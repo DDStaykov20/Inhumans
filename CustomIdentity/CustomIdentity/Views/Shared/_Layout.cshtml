@@ -1,4 +1,14 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<AppUser> UserManager
+@model IEnumerable<CustomIdentity.Models.GroupModel>
+
+@{
+    ViewData["Title"] = "Index";
+    var user = UserManager.GetUserAsync(User).Result;
+    var userRole = user?.RoleName;
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
@@ -24,9 +34,10 @@
                         <a   asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                     </li>
                    
-                    <li class="nav-item">
-                        <a    asp-area="" asp-controller="Groups" asp-action="Index">Classes</a>
-                    </li>
+                        <li class="nav-item">
+                            <a asp-area="" asp-controller="Groups" asp-action="Index">Classes</a>
+                        </li>
+                    
                     <li class="nav-item">
                         <a  asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                     </li>

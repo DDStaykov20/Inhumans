@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CustomIdentity.Data;
 using CustomIdentity.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace CustomIdentity.Controllers
 {
@@ -20,8 +22,15 @@ namespace CustomIdentity.Controllers
         }
 
         // GET: Assignment
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(bool myAssign = false)
         {
+            ViewBag.myAssign = myAssign;
+            if (!myAssign)
+            {
+                var appDbContext = _context.Assignments.Include(p => p.Class);
+                return View(await appDbContext.ToListAsync());
+            }
+            
             return View(await _context.Assignments.ToListAsync());
         }
 
