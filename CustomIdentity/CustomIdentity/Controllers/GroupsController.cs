@@ -86,8 +86,8 @@ namespace CustomIdentity.Controllers
             {
                 return NotFound();
             }
-            ViewData["StudentName"] = new SelectList(_context.Users, "Name", "Id", groupModel.StudentName);
-            ViewData["TeacherName"] = new SelectList(_context.Users, "Name", "Id", groupModel.TeacherName);
+            ViewData["StudentName"] = new SelectList(_context.Users, "Name", "Name", groupModel.StudentName);
+            ViewData["TeacherName"] = new SelectList(_context.Users, "Name", "Name", groupModel.TeacherName);
             return View(groupModel);
         }
 
@@ -123,8 +123,8 @@ namespace CustomIdentity.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["StudentName"] = new SelectList(_context.Users, "Name", "Id", groupModel.StudentName);
-            ViewData["TeacherName"] = new SelectList(_context.Users, "Name", "Id", groupModel.TeacherName);
+            ViewData["StudentName"] = new SelectList(_context.Users, "Name", "Name", groupModel.StudentName);
+            ViewData["TeacherName"] = new SelectList(_context.Users, "Name", "Name", groupModel.TeacherName);
             return View(groupModel);
         }
 

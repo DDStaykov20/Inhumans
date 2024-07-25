@@ -2,11 +2,7 @@
 @inject UserManager<AppUser> UserManager
 
 
-@{
-    ViewData["Title"] = "Index";
-    var user = UserManager.GetUserAsync(User).Result;
-    var userRole = user?.RoleName;
-}
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,6 +34,9 @@
                         </li>
                     <li class="nav-item">
                         <a asp-area="" asp-controller="Assignment" asp-action="Index">Assignments</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-area="" asp-controller="Account" asp-action="Register">Create account</a>
                     </li>
                     <li class="nav-item">
                         <a  asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>

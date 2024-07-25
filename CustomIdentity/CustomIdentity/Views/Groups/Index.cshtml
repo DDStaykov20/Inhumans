@@ -12,10 +12,12 @@ var userRole = user?.RoleName;
 
 
 <h1>Index</h1>
-
-<p>
+@if (userRole == "Admin")
+{
+    <p>
     <a asp-action="Create">Create New</a>
 </p>
+}
 <table class="table">
     <thead>
         <tr>
@@ -41,14 +43,17 @@ var userRole = user?.RoleName;
                     @Html.DisplayFor(modelItem => item.ClassName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Teacher.Id)
+                    @Html.DisplayFor(modelItem => item.Teacher.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Student.Id)
+                    @Html.DisplayFor(modelItem => item.Student.Name)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    @if (userRole == "Admin")
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> 
+                    }
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> 
                     <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                 </td>
             </tr>

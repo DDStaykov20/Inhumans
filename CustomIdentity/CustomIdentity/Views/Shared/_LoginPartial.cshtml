@@ -1,6 +1,8 @@
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<AppUser> signInManager
 
+
+
 <ul class="navbar-nav ms-auto">
     @if (signInManager.IsSignedIn(User))
     {
@@ -17,9 +19,6 @@
     }
     else
     {
-    <li class="nav-item">
-        <a  asp-area="" asp-controller="Account" asp-action="Register">Register</a>
-    </li>
     <li class="nav-item">
         <a  asp-area="" asp-controller="Account" asp-action="Login">Login</a>
     </li>

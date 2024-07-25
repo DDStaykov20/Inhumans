@@ -1,14 +1,25 @@
 @model IEnumerable<CustomIdentity.Models.AssignmentModel>
+@inject UserManager<AppUser> UserManager
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Mvc.TagHelpers
 
+
+@{
+ViewData["Title"] = "Index";
+var user = UserManager.GetUserAsync(User).Result;
+var userRole = user?.RoleName;
+}
 @{
     ViewData["Title"] = "Index";
 }
 
 <h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+@if (userRole == "Teacher")
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
 <table class="table">
     <thead>
     <tr>
@@ -35,7 +46,10 @@
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                @if (userRole == "Teacher")
+                {
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                }
             </td>
         </tr>
     }

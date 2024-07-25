@@ -1,9 +1,14 @@
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 @model CustomIdentity.ViewModels.RegisterVM
-
+@inject UserManager<AppUser> UserManager
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Mvc.TagHelpers
 @{
-ViewData["Title"] = "Register";
+    ViewData["Title"] = "Register";
+    var user = UserManager.GetUserAsync(User).Result;
+    var userRole = user?.RoleName;
 }
+
 
 <style>
     body {
@@ -64,11 +69,6 @@ ViewData["Title"] = "Register";
                 <label asp-for="ConfirmPassword" class="form-label">Confirm Password</label>
                 <input asp-for="ConfirmPassword" type="password" class="form-control" />
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <label asp-for="Address" class="form-label">Address</label>
-                <textarea asp-for="Address" class="form-control" rows="2"></textarea>
-                <span asp-validation-for="Address" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="RoleName" class="form-label">Role Name</label>
