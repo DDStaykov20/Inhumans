@@ -19,6 +19,11 @@ namespace CustomIdentity.Controllers
         {
             return View();
         }
+        
+        public IActionResult HomeView()
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {

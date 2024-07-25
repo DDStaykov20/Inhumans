@@ -7,7 +7,6 @@
 ViewData["Title"] = "Register";
 var user = UserManager.GetUserAsync(User).Result;
 var userRole = user?.RoleName;
-Layout = null; 
 }
 
 <!DOCTYPE html>
@@ -19,8 +18,8 @@ Layout = null;
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" integrity="sha512-KyZXEAg3QhqLMpG8r+Knujsl5+5hb7MBf+2ZDbCzEz4jFYlQ6KXJ8kSYP6VdFlJxE+3IWIBGwJS5XspmPE9pew==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         body {
-            background-color: #20c997; /* Change to match the background color of the image */
-            font-family: Arial, sans-serif;
+            background-color: #0dcaf0; /* Match background color */
+            font-family: cursive;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -31,7 +30,7 @@ Layout = null;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            width: 100%;
         }
         .register-card {
             background-color: #fff;
@@ -39,18 +38,21 @@ Layout = null;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 2rem;
             width: 550px;
-            height: 700px;
+            max-width: 100%;
         }
         .register-card h2 {
             color: #333;
             margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 1rem;
         }
         .form-control {
             border-radius: 5px;
-            margin-bottom: 1rem;
         }
         .btn-primary {
-            background-color: #20c997; /* Match the button color */
+            background-color: lightblue; /* Consistent button color */
             border: none;
             border-radius: 5px;
             padding: 0.75rem;
@@ -60,120 +62,69 @@ Layout = null;
             cursor: pointer;
         }
         .btn-primary:hover {
-            background-color: #1ca883;
+            background-color: lightskyblue;
         }
-        .register-card a {
-            color: #20c997;
-            text-decoration: none;
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
         }
-        .register-card a:hover {
-            text-decoration: underline;
+        .form-control::placeholder {
+            color: #888;
         }
-        .form-group {
-            position: relative;
+        .text-danger {
+            color: #dc3545;
         }
-        .form-group i {
-            position: absolute;
-            top: 50%;
-            left: 10px;
-            transform: translateY(-50%);
-            color: #999;
+        .btn-secondary {
+            background-color: #6c757d;
+            border: none;
+            border-radius: 5px;
+            padding: 0.75rem;
+            width: 100%;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
         }
-        .form-control {
-            padding-left: 40px;
-        }
-        #register_title {
-            padding-bottom: 40px;
-            font-size: 50px;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .sr-only {
-            font-size: 30px;
-            text-align: left;
-            padding-left: 40px;
-            margin-bottom: 40px;
-        }
-        input {
-            height: 35px;
-            width: 200px;
-            padding-left: 120px;
-            margin-left: 30px;
-        }
-        #input1 {
-            margin-left: 57px;
-        }
-        #email1 {
-            margin-bottom: 20px;
-        }
-        #email2 {
-            font-size: 20px;
-        }
-        #email3 {
-            margin-bottom: 20px;
-        }
-        #email5 {
-            font-size: 40px;
-            
-        }
-        #register_button {
-            margin-top: 30px;
-            font-size: 30px;
-            height: 80px;
-            margin-left:0;
-        }
-        
-        #text{
-           margin-bottom: -8px;
-            height: 35px;
-            width: 200px;
-            padding-top: 10px;
-            padding-left: 30px;
-            text-align: left;
+        .btn-secondary:hover {
+            background-color: #5a6268;
         }
     </style>
 </head>
 <body>
 <div class="register-container">
     <div class="register-card">
-        <h2 class="text-center" id="register_title">Create Account</h2>
+        <h2>Create Account</h2>
         <form asp-action="Register" method="post" asp-route-returnurl="@ViewData["ReturnUrl"]">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div id="email1" class="form-group">
-                <i class="fa fa-user"></i>
-                <label asp-for="Name" class="sr-only">Name:</label>
-                <input id="input1" asp-for="Name" class="form-control" placeholder="Name" />
+            <div class="form-group">
+                <label asp-for="Name" class="form-label">Name</label>
+                <input asp-for="Name" class="form-control" placeholder="Name" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
-            <div id="email1" class="form-group">
-                <i class="fa fa-envelope"></i>
-                <label asp-for="Email" class="sr-only">Email:</label>
-                <input id="input1" asp-for="Email" class="form-control" placeholder="Email" />
+            <div class="form-group">
+                <label asp-for="Email" class="form-label">Email</label>
+                <input asp-for="Email" class="form-control" placeholder="Email" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
-            <div id="email3" class="form-group">
-                <i class="fa fa-lock"></i>
-                <label asp-for="Password" class="sr-only">Password:</label>
-                <input id="input2" asp-for="Password" type="password" class="form-control" placeholder="Password" />
+            <div class="form-group">
+                <label asp-for="Password" class="form-label">Password</label>
+                <input asp-for="Password" type="password" class="form-control" placeholder="Password" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
-            <div id="email3" class="form-group">
-                <i class="fa fa-lock"></i>
-                <label asp-for="ConfirmPassword" class="sr-only">Confirm:</label>
-                <input id="input2" asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Confirm Password" />
+            <div class="form-group">
+                <label asp-for="ConfirmPassword" class="form-label">Confirm Password</label>
+                <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Confirm Password" />
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
-            <div id="email5" class="form-group">
-                <i class="fa fa-users"></i>
-                <label asp-for="RoleName" class="sr-only">Role Name:</label>
-                <textarea id="text" asp-for="RoleName" class="form-control" rows="2" ></textarea>
+            <div class="form-group">
+                <label asp-for="RoleName" class="form-label">Role Name</label>
+                <textarea asp-for="RoleName" class="form-control" rows="2" placeholder="Role Name"></textarea>
                 <span asp-validation-for="RoleName" class="text-danger"></span>
             </div>
-            <div class="row">
-                
-                <div class="col-4">
-                    <input id="register_button" type="submit" value="Register" class="btn btn-primary w-100" />
-                </div>
+            <div class="form-group">
+                <input type="submit" value="Register" class="btn btn-primary" />
+            </div>
+            <div class="form-group">
+                <a class="btn btn-secondary" asp-action="Index">Back to List</a>
             </div>
         </form>
     </div>

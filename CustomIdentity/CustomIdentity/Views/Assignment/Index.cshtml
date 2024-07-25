@@ -3,55 +3,66 @@
 @using Microsoft.AspNetCore.Identity
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 
-
 @{
 ViewData["Title"] = "Index";
 var user = UserManager.GetUserAsync(User).Result;
 var userRole = user?.RoleName;
 }
-@{
-    ViewData["Title"] = "Index";
-}
 
-<h1>Index</h1>
+<style>
+    body {
+        background-color: #0dcaf0;
+        font-family: cursive;
+    }
+
+    h1 {
+        margin-top: 3%;
+        font-size: 50px;
+        margin-bottom: 5%;
+    }
+
+    #card {
+        border-radius: 40px;
+    }
+</style>
+
+<body>
+<h1>My Assignments</h1>
 @if (userRole == "Teacher")
 {
-    <p>
-        <a asp-action="Create">Create New</a>
-    </p>
+<p>
+    <a class="btn btn-primary" asp-action="Create">Create New</a>
+</p>
 }
-<table class="table">
-    <thead>
-    <tr>
-        <th>@Html.DisplayNameFor(model => model.Class)</th>
-        <th>@Html.DisplayNameFor(model => model.AssignmentDescription)</th>
-        <th>@Html.DisplayNameFor(model => model.Grade)</th>
-        <th>File</th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
+
+<div class="row">
     @foreach (var item in Model)
     {
-        <tr>
-            <td>@Html.DisplayFor(modelItem => item.Class)</td>
-            <td>@Html.DisplayFor(modelItem => item.AssignmentDescription)</td>
-            <td>@Html.DisplayFor(modelItem => item.Grade)</td>
-            <td>
-                @if (!string.IsNullOrEmpty(item.FilePath))
-                {
-                    <a href="@Url.Action("Download", new { id = item.Id })">Download</a>
-                }
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                @if (userRole == "Teacher")
-                {
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                }
-            </td>
-        </tr>
+    <div id="card" class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">@item.Class</h5>
+                <p class="card-text">
+                    <strong>Assignment:</strong> @item.AssignmentDescription<br />
+                    <strong>Grade:</strong> @item.Grade<br />
+                    @if (!string.IsNullOrEmpty(item.FilePath))
+                    {
+                    <strong>File:</strong> <a href="@Url.Action("Download", new { id = item.Id })">Download</a>
+                    }
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <a class="btn btn-sm btn-outline-secondary" asp-action="Details" asp-route-id="@item.Id">View Details</a>
+                        <a class="btn btn-sm btn-outline-secondary" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        @if (userRole == "Teacher")
+                        {
+                        <a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     }
-    </tbody>
-</table>
+</div>
+</body>

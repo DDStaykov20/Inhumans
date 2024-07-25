@@ -33,7 +33,7 @@ namespace CustomIdentity.Controllers
         {
             return View(await _context.Assignments.ToListAsync());
         }
-        
+
         public async Task<IActionResult> Mathematics()
         {
             var assignments = await _context.Assignments
@@ -41,9 +41,6 @@ namespace CustomIdentity.Controllers
                 .ToListAsync();
             return View(assignments);
         }
-
-        
-        
 
         // GET: Assignment/Details/5
         public async Task<IActionResult> Details(int? id)

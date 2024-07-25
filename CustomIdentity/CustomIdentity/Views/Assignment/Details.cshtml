@@ -1,42 +1,114 @@
 @model CustomIdentity.Models.AssignmentModel
 
 @{
-    ViewData["Title"] = "Details";
+ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" integrity="sha512-KyZXEAg3QhqLMpG8r+Knujsl5+5hb7MBf+2ZDbCzEz4jFYlQ6KXJ8kSYP6VdFlJxE+3IWIBGwJS5XspmPE9pew==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            background-color: #0dcaf0; /* Background color to match the example */
+            font-family: cursive;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .details-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .details-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            width: 700px;
+        }
+        .details-card h2 {
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+        .btn-primary {
+            background-color: lightskyblue; /* Match the button color */
+            border: none;
+            border-radius: 5px;
+            padding: 0.75rem;
+            width: 100%;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            border: none;
+            border-radius: 5px;
+            padding: 0.75rem;
+            width: 100%;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        .details-card a {
+            font-size: 20px;
+            color: black;
+            text-decoration: none;
+        }
+        .details-card dl {
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+<div class="details-container">
+    <div class="details-card">
+        <h2 class="text-center">@ViewData["Title"]</h2>
+        <h4>Assignment Details</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Class)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Class)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.AssignmentDescription)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.AssignmentDescription)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.FilePath)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.FilePath)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Grade)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Grade)
+            </dd>
+        </dl>
+        <div class="d-flex justify-content-between">
+            <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
+            <a class="btn btn-secondary" asp-action="Index">Back to List</a>
+        </div>
+    </div>
+</div>
 
-<div>
-    <h4>AssignmentModel</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Class)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Class)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AssignmentDescription)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AssignmentDescription)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FilePath)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FilePath)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Grade)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Grade)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+<!-- Scripts Section -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-KyZXEAg3QhqLMpG8r+Knujsl5+5hb7MBf+2ZDbCzEz4jFYlQ6KXJ8kSYP6VdFlJxE+3IWIBGwJS5XspmPE9pew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.bundle.min.js" integrity="sha512-KyZXEAg3QhqLMpG8r+Knujsl5+5hb7MBf+2ZDbCzEz4jFYlQ6KXJ8kSYP6VdFlJxE+3IWIBGwJS5XspmPE9pew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+</html>

@@ -1,63 +1,65 @@
-
 @inject UserManager<AppUser> UserManager
 @using Microsoft.AspNetCore.Identity
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 @model IEnumerable<CustomIdentity.Models.GroupModel>
 
 @{
-ViewData["Title"] = "Index";
+ViewData["Title"] = "Classes";
 var user = UserManager.GetUserAsync(User).Result;
 var userRole = user?.RoleName;
 }
 
-
-<h1>Index</h1>
+<style>
+    
+    body{
+        background-color: #0dcaf0;
+        font-family: cursive;
+    }
+    
+    h1{
+        margin-top: 3%;
+        font-size: 50px;
+        margin-bottom: 5%;
+    }
+    
+    #card{
+        border-radius: 40px ;
+    }
+    
+</style>
+<body>
+<h1>My Classes</h1>
 @if (userRole == "Admin")
 {
-    <p>
-    <a asp-action="Create">Create New</a>
+<p>
+    <a class="btn btn-primary" asp-action="Create">Create New</a>
 </p>
 }
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ClassName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Teacher)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Student)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-    @if (userRole == "Teacher")
+
+<div class="row">
+    @foreach (var item in Model)
     {
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ClassName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Teacher.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Student.Name)
-                </td>
-                <td>
-                    @if (userRole == "Admin")
-                    {
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> 
-                    }
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> 
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
-        }
+    <div id="card" class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">@item.ClassName</h5>
+                <p class="card-text">
+                    <strong>Teacher:</strong> @item.Teacher.Name<br />
+                    <strong>Student:</strong> @item.Student.Name
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <a class="btn btn-sm btn-outline-secondary" asp-action="Details" asp-route-id="@item.Id">View Details</a>
+                        @if (userRole == "Admin")
+                        {
+                        <a class="btn btn-sm btn-outline-secondary" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        <a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     }
-    </tbody>
-</table>
+</div>
+</body>

@@ -34,7 +34,7 @@ public class AccountController : Controller
 
             if (result.Succeeded)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("HomeView", "Home");
             }
             
             ModelState.AddModelError("", "Invalid login attempt");
@@ -69,7 +69,7 @@ public class AccountController : Controller
             {
                 await signInManager.SignInAsync(user, false);
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("HomeView", "Home");
             }
             
         }
