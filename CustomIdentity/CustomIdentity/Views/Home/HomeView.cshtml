@@ -1,0 +1,41 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog Lovers - @ViewData["Title"]</title>
+    <style>
+        body{
+            background-color: #0dcaf0;
+            font-family: cursive;
+           
+        }
+        
+        .big-text {
+            margin-top: 15%;
+            font-size: 120px; /* Large text size */
+            text-align: center;
+        }
+        
+        .big-text a {
+            color: inherit; /* Keep link color same as text */
+            text-decoration: none; /* Remove underline from link */
+        }
+        
+        .class1{
+            margin-top: 5%;
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+<div class="big-text">
+    <p><a href="@Url.Action("Login", "Account")">Hu-Work</a></p>
+    <p class="class1">The only app for your homework</p>
+</div>
+</body>
+</html>
