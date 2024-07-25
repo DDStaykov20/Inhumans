@@ -1,38 +1,49 @@
 using System;
-using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CustomIdentity.Data;
 using CustomIdentity.Models;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Hosting;
 
 namespace CustomIdentity.Controllers
 {
     public class AssignmentController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly string _uploadPath;
 
-        public AssignmentController(AppDbContext context)
+        public AssignmentController(AppDbContext context, IWebHostEnvironment env)
         {
             _context = context;
+            _uploadPath = Path.Combine(env.WebRootPath, "UploadedFiles");
+
+            // Ensure the upload directory exists
+            if (!Directory.Exists(_uploadPath))
+            {
+                Directory.CreateDirectory(_uploadPath);
+            }
         }
 
         // GET: Assignment
-        public async Task<IActionResult> Index(bool myAssign = false)
+        public async Task<IActionResult> Index()
         {
-            ViewBag.myAssign = myAssign;
-            if (!myAssign)
-            {
-                var appDbContext = _context.Assignments.Include(p => p.Class);
-                return View(await appDbContext.ToListAsync());
-            }
-            
             return View(await _context.Assignments.ToListAsync());
         }
+        
+        public async Task<IActionResult> Mathematics()
+        {
+            var assignments = await _context.Assignments
+                .Where(a => a.Class == "Mathematics")
+                .ToListAsync();
+            return View(assignments);
+        }
+
+        
+        
 
         // GET: Assignment/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -59,14 +70,25 @@ namespace CustomIdentity.Controllers
         }
 
         // POST: Assignment/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Class,AssignmentDescription,Payment")] AssignmentModel assignmentModel)
+        public async Task<IActionResult> Create(AssignmentModel assignmentModel)
         {
             if (ModelState.IsValid)
             {
+                if (assignmentModel.File != null && assignmentModel.File.Length > 0)
+                {
+                    var fileName = Path.GetFileName(assignmentModel.File.FileName);
+                    var filePath = Path.Combine(_uploadPath, fileName);
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await assignmentModel.File.CopyToAsync(stream);
+                    }
+
+                    assignmentModel.FilePath = fileName; // Save the file name in the database
+                }
+
                 _context.Add(assignmentModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -91,11 +113,9 @@ namespace CustomIdentity.Controllers
         }
 
         // POST: Assignment/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Class,AssignmentDescription,Payment")] AssignmentModel assignmentModel)
+        public async Task<IActionResult> Edit(int id, AssignmentModel assignmentModel)
         {
             if (id != assignmentModel.Id)
             {
@@ -106,6 +126,19 @@ namespace CustomIdentity.Controllers
             {
                 try
                 {
+                    if (assignmentModel.File != null && assignmentModel.File.Length > 0)
+                    {
+                        var fileName = Path.GetFileName(assignmentModel.File.FileName);
+                        var filePath = Path.Combine(_uploadPath, fileName);
+
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await assignmentModel.File.CopyToAsync(stream);
+                        }
+
+                        assignmentModel.FilePath = fileName; // Update the file name in the database
+                    }
+
                     _context.Update(assignmentModel);
                     await _context.SaveChangesAsync();
                 }
@@ -152,10 +185,38 @@ namespace CustomIdentity.Controllers
             if (assignmentModel != null)
             {
                 _context.Assignments.Remove(assignmentModel);
+                if (!string.IsNullOrEmpty(assignmentModel.FilePath))
+                {
+                    var filePath = Path.Combine(_uploadPath, assignmentModel.FilePath);
+                    if (System.IO.File.Exists(filePath))
+                    {
+                        System.IO.File.Delete(filePath);
+                    }
+                }
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        // GET: Assignment/Download/5
+        public IActionResult Download(int id)
+        {
+            var assignment = _context.Assignments.Find(id);
+            if (assignment == null || string.IsNullOrEmpty(assignment.FilePath))
+            {
+                return NotFound();
+            }
+
+            var filePath = Path.Combine(_uploadPath, assignment.FilePath);
+            if (!System.IO.File.Exists(filePath))
+            {
+                return NotFound();
+            }
+
+            var fileBytes = System.IO.File.ReadAllBytes(filePath);
+            var fileName = Path.GetFileName(filePath);
+            return File(fileBytes, "application/octet-stream", fileName);
         }
 
         private bool AssignmentModelExists(int id)

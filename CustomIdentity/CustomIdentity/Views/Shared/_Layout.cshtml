@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject UserManager<AppUser> UserManager
-@model IEnumerable<CustomIdentity.Models.GroupModel>
+
 
 @{
     ViewData["Title"] = "Index";
@@ -33,11 +33,12 @@
                     <li class="nav-item">
                         <a   asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                     </li>
-                   
-                        <li class="nav-item">
+                    <li class="nav-item">
                             <a asp-area="" asp-controller="Groups" asp-action="Index">Classes</a>
                         </li>
-                    
+                    <li class="nav-item">
+                        <a asp-area="" asp-controller="Assignment" asp-action="Index">Assignments</a>
+                    </li>
                     <li class="nav-item">
                         <a  asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                     </li>

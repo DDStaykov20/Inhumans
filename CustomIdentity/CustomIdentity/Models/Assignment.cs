@@ -20,6 +20,11 @@ public class AssignmentModel
     [DataType(DataType.MultilineText)]
     public string? AssignmentDescription { get; set; }
     
+    [NotMapped]
+    public IFormFile? File { get; set; }
+    
+    public string? FilePath { get; set; }
+    
     [Range(2, 6)]
-    public decimal Payment { get; set; }
+    public decimal Grade { get; set; }
 }

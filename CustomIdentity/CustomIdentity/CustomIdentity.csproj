@@ -56,6 +56,11 @@
       <_ContentIncludedByDefault Remove="Views\Group\Details.cshtml" />
       <_ContentIncludedByDefault Remove="Views\Group\Edit.cshtml" />
       <_ContentIncludedByDefault Remove="Views\Group\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Assignment\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Assignment\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Assignment\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Assignment\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Assignment\Index.cshtml" />
     </ItemGroup>
 
     <ItemGroup>
@@ -114,6 +119,16 @@
       <UpToDateCheckInput Remove="Views\Group\Details.cshtml" />
       <UpToDateCheckInput Remove="Views\Group\Edit.cshtml" />
       <UpToDateCheckInput Remove="Views\Group\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\Assignment\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\Assignment\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\Assignment\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\Assignment\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\Assignment\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\Assignment\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\Assignment\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\Assignment\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\Assignment\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\Assignment\Index.cshtml" />
     </ItemGroup>
 
     <ItemGroup>

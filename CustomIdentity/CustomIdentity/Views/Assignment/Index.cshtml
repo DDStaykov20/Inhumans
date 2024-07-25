@@ -11,30 +11,26 @@
 </p>
 <table class="table">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Class)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AssignmentDescription)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Payment)
-            </th>
-            <th></th>
-        </tr>
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Class)</th>
+        <th>@Html.DisplayNameFor(model => model.AssignmentDescription)</th>
+        <th>@Html.DisplayNameFor(model => model.Grade)</th>
+        <th>File</th>
+        <th></th>
+    </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+    @foreach (var item in Model)
+    {
         <tr>
+            <td>@Html.DisplayFor(modelItem => item.Class)</td>
+            <td>@Html.DisplayFor(modelItem => item.AssignmentDescription)</td>
+            <td>@Html.DisplayFor(modelItem => item.Grade)</td>
             <td>
-                @Html.DisplayFor(modelItem => item.Class)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AssignmentDescription)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Payment)
+                @if (!string.IsNullOrEmpty(item.FilePath))
+                {
+                    <a href="@Url.Action("Download", new { id = item.Id })">Download</a>
+                }
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
@@ -42,6 +38,6 @@
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
-}
+    }
     </tbody>
 </table>
